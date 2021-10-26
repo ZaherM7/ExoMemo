@@ -5,7 +5,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import fr.solutec.entities.Memo;
 import fr.solutec.entities.User;
+import fr.solutec.repository.MemoRepository;
 import fr.solutec.repository.UserRepository;
 
 @SpringBootApplication
@@ -13,6 +15,8 @@ public class ExoMemoApplication implements CommandLineRunner{
 	
 	@Autowired
 	private UserRepository userRepos;
+	@Autowired
+	private MemoRepository memoRepos;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ExoMemoApplication.class, args);
@@ -22,7 +26,7 @@ public class ExoMemoApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		User u1=new User(null, "Cornet", "Arthur", "carthur", "rose"); //la valeur 0 équivaut à null pour int ; null=null pour Long
+		User u1=new User(null, "Cornet", "Arthur", "carthur", "rose");
 		userRepos.save(u1);
 		User u2=new User(null, "Msaidie", "Zaher", "mzaher", "bonsai"); 
 		userRepos.save(u2);
@@ -30,6 +34,15 @@ public class ExoMemoApplication implements CommandLineRunner{
 		userRepos.save(u3);
 		User u4=new User(null, "Gallon", "Rose-Marie", "grosemarie", "pissenlit"); 
 		userRepos.save(u4);
+		
+		Memo m1 = new Memo(null, "J'aime les roses", false, u1);
+		memoRepos.save(m1);
+		Memo m2 = new Memo(null, "J'aime les bonsais", false, u2);
+		memoRepos.save(m2);
+		Memo m3 = new Memo(null, "J'aime les orchidees", false, u3);
+		memoRepos.save(m3);
+		Memo m4 = new Memo(null, "J'aime les pissenlits", false, u4);
+		memoRepos.save(m4);
 		
 	}
 
