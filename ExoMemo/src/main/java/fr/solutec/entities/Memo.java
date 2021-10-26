@@ -18,5 +18,5 @@ public class Memo {
 	boolean isPrivate;
 	
 	@ManyToOne
-	User u;
+	User user;
 }
